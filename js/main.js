@@ -61,14 +61,25 @@ function modificarStock() {
     alert("El producto no existe en el stock.");
   }
 }
+// Función para buscar un producto por nombre
+function buscarPorNombre() {
+  const nombre = prompt("Ingrese el nombre del producto que desea buscar:");
+  const productoEncontrado = stock.find((producto) => producto.nombre === nombre);
+
+  if (productoEncontrado) {
+    alert(`Producto encontrado:\n${productoEncontrado.nombre}: ${productoEncontrado.cantidad} unidades, Precio por unidad: $ ${productoEncontrado.precio}`);
+  } else {
+    alert("Producto no encontrado en el stock.");
+  }
+}
 
 // Función para el menú principal
 function menuPrincipal() {
   while (true) {
     const opcion = prompt(
       "Bienvenido a control de stock de tu empresa " +
-        empresa +
-        ".\nMenú Principal:\n1. Agregar Producto\n2. Mostrar Stock\n3. Modificar Stock\n4. Salir"
+      empresa +
+      ".\nMenú Principal:\n1. Agregar Producto\n2. Mostrar Stock\n3. Modificar Stock\n4. Buscar Producto por Nombre\n0. Salir"
     );
 
     switch (opcion) {
@@ -82,53 +93,14 @@ function menuPrincipal() {
         modificarStock();
         break;
       case "4":
+        buscarPorNombre();
+        break;
+      case "0":
         return;
       default:
         alert("Opción no válida. Por favor, seleccione una opción válida.");
     }
   }
-}
-
-// Función para buscar un producto por nombre
-function buscarPorNombre() {
-    const nombre = prompt("Ingrese el nombre del producto que desea buscar:");
-    const productoEncontrado = stock.find((producto) => producto.nombre === nombre);
-
-    if (productoEncontrado) {
-        alert(`Producto encontrado:\n${productoEncontrado.nombre}: ${productoEncontrado.cantidad} unidades, Precio por unidad: $ ${productoEncontrado.precio}`);
-    } else {
-        alert("Producto no encontrado en el stock.");
-    }
-}
-
-// Función para el menú principal
-function menuPrincipal() {
-    while (true) {
-        const opcion = prompt(
-            "Bienvenido a control de stock de tu empresa " +
-            empresa +
-            ".\nMenú Principal:\n1. Agregar Producto\n2. Mostrar Stock\n3. Modificar Stock\n4. Buscar Producto por Nombre\n5. Salir"
-        );
-
-        switch (opcion) {
-            case "1":
-                agregarProducto();
-                break;
-            case "2":
-                mostrarStock();
-                break;
-            case "3":
-                modificarStock();
-                break;
-            case "4":
-                buscarPorNombre();
-                break;
-            case "5":
-                return;
-            default:
-                alert("Opción no válida. Por favor, seleccione una opción válida.");
-        }
-    }
 }
 
 // Llamamos a la función del menú principal para comenzar el programa
